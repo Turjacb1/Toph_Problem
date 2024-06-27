@@ -1,50 +1,29 @@
 #include <stdio.h>
 
-void factorial(int n) {
-    int a[2000], i, c;
+int main() {
+    int N;
+
+    printf("Enter the size of the pyramid (1 <= N <= 100): ");
+    scanf("%d", &N);
+    if (N < 1 || N > 100) {
+        printf("Invalid input: N must be between 1 and 100.\n");
+        return 1;
+    }
 
    
-    a[0] = 1;
-    c = 0;  
+    int spaces = N - 1;
 
-
-    for (i = 2; i <= n; i++) {
-        int temp = 0;
-        for (int j = 0; j <= c; j++) {
-            temp += a[j] * i;
-            a[j] = temp % 10;
-            temp /= 10;
+    for (int i = 1; i <= N; i++) {
+    
+        for (int j = 1; j <= spaces; j++) {
+            printf(" ");
+        }
+        for (int j = 1; j <=1 * i; j++) {
+            printf("* ");
         }
 
-       
-        while (temp > 0) {
-            c++;  
-            if (c >= 2000) {  
-                printf("Factorial too large to be represented in this array.\n");
-                return;  
-            }
-            a[c] = temp % 10;
-            temp /= 10;
-        }
-    }
-
-
-    printf("Factorial of %d: ", n);
-    for (i = c; i >= 0; i--) {
-        printf("%d", a[i]);
-    }
-    printf("\n");
-}
-
-int main() {
-    int n;
-    printf("Enter a non-negative integer: ");
-    scanf("%d", &n);
-
-    if (n < 0) {
-        printf("Error: Factorial is not defined for negative numbers.\n");
-    } else {
-        factorial(n);
+        printf("\n");
+        spaces--;
     }
 
     return 0;
